@@ -1,0 +1,365 @@
+/* Stylesheet for Double V Contracting - Premium General Contractor Website */
+
+/* --- Custom Variables & Theme Tokens --- */
+:root {
+    /* Metropolitan Masterpiece (Light Theme) Tokens */
+    --bg-color: #f9f9f7;
+    --surface-color: #f9f9f7;
+    --surface-card: #ffffff;
+    --surface-card-hover: #f1f1ee;
+    --text-primary: #1a1c1b;
+    --text-secondary: #5d5e61;
+    --accent: #B89B72; /* Heritage Gold */
+    --accent-hover: #9e825b;
+    --on-accent: #121212;
+    --border-color: rgba(44, 46, 48, 0.1);
+    --border-glow: rgba(184, 155, 114, 0.3);
+    --navbar-bg: rgba(249, 249, 247, 0.85);
+    --timeline-line: rgba(44, 46, 48, 0.15);
+    --shadow-premium: 0px 20px 40px rgba(0, 0, 0, 0.03);
+    
+    /* Global Transitions */
+    --transition-premium: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Obsidian Elite (Dark Theme) Tokens */
+[data-theme="dark"] {
+    --bg-color: #0a0a0a;
+    --surface-color: #111111;
+    --surface-card: #141313;
+    --surface-card-hover: #1c1b1b;
+    --text-primary: #e5e2e1;
+    --text-secondary: #c4c7c7;
+    --accent: #E2B870; /* Gold Leaf */
+    --accent-hover: #ebc077;
+    --on-accent: #121212;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-glow: rgba(99, 102, 241, 0.3);
+    --navbar-bg: rgba(10, 10, 10, 0.85);
+    --timeline-line: rgba(255, 255, 255, 0.1);
+    --shadow-premium: 0px 30px 60px rgba(0, 0, 0, 0.5);
+    --accent-gradient: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%); /* Electric Dusk */
+}
+
+/* --- Font Declarations & Base Overrides --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-x: hidden;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .glass-panel {
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0px 40px 80px rgba(0, 0, 0, 0.4), inset 0px 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.scrim-bottom {
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.4) 50%, rgba(10, 10, 10, 0) 100%);
+}
+
+/* --- Advanced Hover & Elevation Animations --- */
+.card-hover-effect {
+    transition: var(--transition-premium);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-premium);
+}
+
+.card-hover-effect:hover {
+    transform: translateY(-8px);
+    border-color: var(--border-glow);
+    box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .card-hover-effect:hover {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.15);
+}
+
+/* Image Parallax & Scale Transitions */
+.image-zoom-container {
+    overflow: hidden;
+}
+
+.image-zoom-container img {
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-zoom-container:hover img {
+    transform: scale(1.06);
+}
+
+/* --- Scroll Progress Timeline Animations --- */
+.timeline-container {
+    position: relative;
+}
+
+.timeline-line-bg {
+    position: absolute;
+    left: 48px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--timeline-line);
+    z-index: 1;
+}
+
+.timeline-line-progress {
+    position: absolute;
+    left: 48px;
+    top: 0;
+    width: 2px;
+    height: 0%;
+    background: var(--accent);
+    z-index: 2;
+    transition: height 0.1s linear;
+}
+
+[data-theme="dark"] .timeline-line-progress {
+    background: var(--accent-gradient, var(--accent));
+}
+
+.timeline-step {
+    transition: var(--transition-premium);
+    opacity: 0.4;
+    transform: translateX(10px);
+}
+
+.timeline-step.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.timeline-node {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--surface-card);
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    z-index: 3;
+    transition: var(--transition-premium);
+}
+
+.timeline-step.active .timeline-node {
+    border-color: var(--accent);
+    color: var(--on-accent);
+    background-color: var(--accent);
+    box-shadow: 0 0 20px rgba(184, 155, 114, 0.4);
+}
+
+[data-theme="dark"] .timeline-step.active .timeline-node {
+    background: var(--accent-gradient, var(--accent));
+    border-color: transparent;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+/* --- Dynamic Estimate Cost Calculator Styles --- */
+.calculator-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--border-color);
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.calculator-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: var(--transition-fast);
+}
+
+.calculator-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+/* --- Scroll-trigger Reveal Animations (Intersection Observer) --- */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Horizontal / Alternate reveal directions */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal-left.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal-right.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* --- Split Text / Premium Entry Animations --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* --- Magnetic Floating UI / Custom Glows --- */
+.magnetic-button {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Theme Toggle Button Style */
+.theme-toggle-btn {
+    position: relative;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+    border: 1px solid var(--border-color);
+}
+
+.theme-toggle-btn:hover {
+    background-color: var(--border-color);
+}
+
+/* --- Slide-Out Detail Drawer Drawer --- */
+.detail-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 550px;
+    height: 100%;
+    z-index: 100;
+    box-shadow: -10px 0px 40px rgba(0, 0, 0, 0.15);
+    transition: right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: var(--surface-card);
+    border-left: 1px solid var(--border-color);
+}
+
+.detail-drawer.open {
+    right: 0;
+}
+
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.drawer-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* --- Custom Testimonial Transitions --- */
+.testimonial-slide {
+    display: none;
+}
+.testimonial-slide.active {
+    display: block;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- FAQ Accordion Animations --- */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 300px;
+}
+
+.accordion-chevron {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-item.active .accordion-chevron {
+    transform: rotate(180deg);
+}
+
+/* --- Decorative Structural Rules --- */
+.architectural-line {
+    position: relative;
+}
+
+.architectural-line::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+/* --- Premium Logo Styling & Theme Transitions --- */
+.logo-premium {
+    height: 3.5rem; /* h-14 equivalent */
+    width: auto;
+    object-contain: fit;
+    transition: var(--transition-premium);
+    /* By default (light mode), blend or keep clean */
+    mix-blend-mode: multiply;
+}
+
+/* On dark theme, invert the logo: black text becomes white, blue parts shift to gold! */
+[data-theme="dark"] .logo-premium {
+    filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.1);
+    mix-blend-mode: normal;
+}
+

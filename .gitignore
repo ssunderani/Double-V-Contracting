@@ -1,0 +1,17 @@
+# Ignored large raw design files
+extracted_design/
+stitch_concept/
+*.zip
+*.ai
+*.pdf
+*.eps
+
+# Ignored local servers & logs
+run_server.ps1
+.system_generated/
+.tempmediaStorage/
+*.log
+
+# Windows specific
+desktop.ini
+Thumbs.db

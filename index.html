@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Double V Contracting | NYC Luxury Renovations & Historic Restorations</title>
+    <meta name="description" content="Double V Contracting is NYC's premier general contractor, crafting luxury gut renovations, brownstone restorations, and high-end commercial spaces in Manhattan and Brooklyn." />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    
+    <!-- CSS Framework and Custom Overrides -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: ["class", '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    colors: {
+                        'charcoal-slate': '#2C2E30',
+                        'warm-white': '#F9F9F7',
+                        'ink-black': '#121212',
+                        'heritage-gold': '#B89B72',
+                        'gold-leaf': '#E2B870',
+                    },
+                    fontFamily: {
+                        playfair: ['Playfair Display', 'serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="selection:bg-heritage-gold/30 selection:text-text-primary antialiased font-inter">
+
+    <!-- Scroll Progress Indicator -->
+    <div class="fixed top-0 left-0 w-full h-[3px] bg-transparent z-[100]">
+        <div id="scroll-progress" class="h-full bg-heritage-gold dark:bg-gradient-to-r dark:from-indigo-500 dark:to-violet-500 transition-all duration-100" style="width: 0%;"></div>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 bg-[var(--navbar-bg)] backdrop-blur-md border-b border-[var(--border-color)] transition-all duration-300 h-20" id="main-nav">
+        <div class="flex justify-between items-center h-full px-6 md:px-16 max-w-[1440px] mx-auto">
+            
+            <a class="font-playfair text-[20px] md:text-[24px] font-bold tracking-tight text-charcoal-slate dark:text-warm-white flex items-center gap-3 transition-transform duration-300 hover:scale-102" href="#">
+                <span class="w-8 h-8 bg-charcoal-slate dark:bg-warm-white text-warm-white dark:text-charcoal-slate rounded flex items-center justify-center font-bold font-playfair border border-[var(--border-color)]">V</span>
+                Double V Contracting
+            </a>
+            
+            <!-- Desktop Navigation Links -->
+            <div class="hidden lg:flex items-center gap-10">
+                <a class="font-inter text-[12px] font-semibold tracking-widest text-[var(--text-primary)] hover:text-heritage-gold dark:hover:text-gold-leaf transition-colors duration-300 uppercase" href="#services">Services</a>
+                <a class="font-inter text-[12px] font-semibold tracking-widest text-[var(--text-primary)] hover:text-heritage-gold dark:hover:text-gold-leaf transition-colors duration-300 uppercase" href="#process">Process</a>
+                <a class="font-inter text-[12px] font-semibold tracking-widest text-[var(--text-primary)] hover:text-heritage-gold dark:hover:text-gold-leaf transition-colors duration-300 uppercase" href="#portfolio">Portfolio</a>
+                <a class="font-inter text-[12px] font-semibold tracking-widest text-[var(--text-primary)] hover:text-heritage-gold dark:hover:text-gold-leaf transition-colors duration-300 uppercase" href="#faq">FAQ</a>
+                
+                <!-- Premium Light/Dark Theme Switch -->
+                <button id="theme-toggle-btn" class="theme-toggle-btn text-[var(--text-primary)] transition-all duration-300" aria-label="Toggle Dark Mode">
+                    <span class="material-symbols-outlined text-[20px]">dark_mode</span>
+                </button>
+                
+                <a href="#contact" class="bg-heritage-gold dark:bg-gradient-to-r dark:from-indigo-600 dark:to-violet-600 text-ink-black dark:text-white px-8 py-3.5 rounded-full font-inter text-[13px] font-semibold tracking-wider hover:translate-y-[-2px] transition-all duration-300 shadow-lg shadow-heritage-gold/15 active:scale-98 uppercase">
+                    Request Consultation
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Toggle Actions -->
+            <div class="flex items-center gap-4 lg:hidden">
+                <button id="theme-toggle-mobile" class="theme-toggle-btn text-[var(--text-primary)]" onclick="document.getElementById('theme-toggle-btn').click()" aria-label="Toggle Dark Mode">
+                    <!-- Controlled by the same desktop click action via simple inline JS proxy -->
+                    <span class="material-symbols-outlined text-[20px]">palette</span>
+                </button>
+                <button id="menu-toggle" class="text-[var(--text-primary)] transition-transform active:scale-90" aria-label="Toggle Menu">
+                    <span class="material-symbols-outlined text-[28px]">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Overlay Dropdown -->
+    <div class="hidden fixed top-20 left-0 w-full bg-[var(--surface-color)] border-b border-[var(--border-color)] px-6 py-8 shadow-2xl flex-col gap-6 lg:hidden z-40 transition-all duration-300" id="mobile-menu">
+        <a class="font-playfair text-[24px] font-semibold text-[var(--text-primary)]" href="#services">Services</a>
+        <a class="font-playfair text-[24px] font-semibold text-[var(--text-primary)]" href="#process">Process</a>
+        <a class="font-playfair text-[24px] font-semibold text-[var(--text-primary)]" href="#portfolio">Portfolio</a>
+        <a class="font-playfair text-[24px] font-semibold text-[var(--text-primary)]" href="#faq">FAQ</a>
+        <a class="w-full py-4.5 bg-heritage-gold text-ink-black text-center font-inter text-[14px] font-semibold tracking-wider rounded-full shadow-lg" href="#contact">Request Consultation</a>
+    </div>
+
+    <!-- Main Content Area -->
+    <main>
+
+        <!-- Hero Section -->
+        <header id="hero" class="relative min-h-[95vh] md:min-h-screen flex items-center overflow-hidden py-24">
+            <div class="absolute inset-0 z-0 scale-102">
+                <img id="hero-bg-img" alt="Luxury Manhattan Townhouse Interior" class="w-full h-full object-cover origin-center transform scale-105" src="assets/brownstone.png"/>
+                <div class="absolute inset-0 bg-ink-black/45 dark:bg-ink-black/75"></div>
+            </div>
+            
+            <div class="relative z-10 px-6 md:px-16 max-w-[1440px] mx-auto w-full pt-12">
+                <div id="hero-panel" class="max-w-3xl glass-panel p-8 md:p-16 rounded-2xl border border-white/10 shadow-2xl transition-transform duration-300">
+                    <span class="font-inter text-[11px] md:text-[12px] font-bold tracking-[0.2em] text-heritage-gold dark:text-gold-leaf mb-5 block uppercase animate-fade-in-up">NYC'S PREMIER GENERAL CONTRACTOR</span>
+                    
+                    <h1 class="font-playfair text-[38px] md:text-[60px] font-bold tracking-tight text-white mb-6 leading-[1.1] animate-fade-in-up">
+                        Redefining Luxury Renovations in NYC
+                    </h1>
+                    
+                    <p class="font-inter text-[16px] md:text-[18px] text-white/80 dark:text-warm-white/70 mb-10 leading-relaxed max-w-xl animate-fade-in-up">
+                        Expertly navigating Manhattan and Brooklyn's regulatory board and landmarks labyrinths to deliver impeccable structural and surface craftsmanship.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up">
+                        <a href="#contact" class="bg-heritage-gold dark:bg-gradient-to-r dark:from-indigo-600 dark:to-violet-600 text-ink-black dark:text-white px-8 py-4.5 rounded-full font-inter text-[13px] font-semibold tracking-wider hover:translate-y-[-2px] hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 uppercase shadow-lg shadow-heritage-gold/15">
+                            Request a Consultation
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                        </a>
+                        <a href="#portfolio" class="border-2 border-white/30 text-white hover:border-white hover:bg-white/10 px-8 py-4.5 rounded-full font-inter text-[13px] font-semibold tracking-wider transition-all duration-300 flex items-center justify-center uppercase">
+                            View Our Portfolio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Section -->
+        <section id="stats" class="py-12 md:py-20 bg-charcoal-slate border-b border-white/5 relative z-10">
+            <div class="px-6 md:px-16 max-w-[1440px] mx-auto">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 items-center text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-baseline text-white">
+                            <span class="font-playfair text-[42px] md:text-[56px] font-bold tracking-tight stat-counter" data-target="4.7">0</span>
+                            <span class="text-heritage-gold font-playfair text-[28px] font-bold ml-1">★</span>
+                        </div>
+                        <span class="font-inter text-[10px] md:text-[11px] font-bold tracking-[0.15em] text-white/50 uppercase mt-2">Google Rating</span>
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-baseline text-white">
+                            <span class="font-playfair text-[42px] md:text-[56px] font-bold tracking-tight stat-counter" data-target="20">0</span>
+                            <span class="text-heritage-gold font-playfair text-[28px] font-bold ml-1">+</span>
+                        </div>
+                        <span class="font-inter text-[10px] md:text-[11px] font-bold tracking-[0.15em] text-white/50 uppercase mt-2">Years in NYC</span>
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-baseline text-white">
+                            <span class="font-playfair text-[42px] md:text-[56px] font-bold tracking-tight stat-counter" data-target="500">0</span>
+                            <span class="text-heritage-gold font-playfair text-[28px] font-bold ml-1">+</span>
+                        </div>
+                        <span class="font-inter text-[10px] md:text-[11px] font-bold tracking-[0.15em] text-white/50 uppercase mt-2">Projects Completed</span>
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-baseline text-white">
+                            <span class="font-playfair text-[42px] md:text-[56px] font-bold tracking-tight stat-counter" data-target="12">0</span>
+                        </div>
+                        <span class="font-inter text-[10px] md:text-[11px] font-bold tracking-[0.15em] text-white/50 uppercase mt-2">Industry Awards</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Proposition Section -->
+        <section class="py-24 md:py-32 bg-[var(--bg-color)]">
+            <div class="px-6 md:px-16 max-w-[1440px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-center">
+                    
+                    <div class="lg:col-span-6 space-y-6 reveal-left">
+                        <span class="font-inter text-[11px] md:text-[12px] font-bold tracking-[0.2em] text-heritage-gold uppercase block">NYC LOGISTICS MASTERED</span>
+                        <h2 class="font-playfair text-[32px] md:text-[48px] font-semibold tracking-tight text-[var(--text-primary)] leading-[1.15]">
+                            Built for the NYC Pace, Crafted for the NYC Legacy.
+                        </h2>
+                        
+                        <p class="font-inter text-[16px] md:text-[17px] text-[var(--text-secondary)] leading-relaxed">
+                            Renovating in Manhattan and Brooklyn requires more than technical skill—it commands absolute compliance navigation. We coordinate DOB filings, co-op board approvals, landmark regulations, and density logistics with military precision.
+                        </p>
+                        
+                        <div class="space-y-4 pt-4 border-t border-[var(--border-color)]">
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-heritage-gold text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                <div>
+                                    <h4 class="font-inter text-[15px] font-bold text-[var(--text-primary)]">Mastery of NYC Regulatory Compliance</h4>
+                                    <p class="font-inter text-[13px] text-[var(--text-secondary)] mt-1">Full-turnkey filings with the DOB, LPC, and landmark boards.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-heritage-gold text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                <div>
+                                    <h4 class="font-inter text-[15px] font-bold text-[var(--text-primary)]">Impeccable Job Site Safety &amp; Cleanliness</h4>
+                                    <p class="font-inter text-[13px] text-[var(--text-secondary)] mt-1">Protecting high-end surfaces and managing tenant relation dust protocols.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-heritage-gold text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                <div>
+                                    <h4 class="font-inter text-[15px] font-bold text-[var(--text-primary)]">Transparent, Milestone-Based Communication</h4>
+                                    <p class="font-inter text-[13px] text-[var(--text-secondary)] mt-1">Daily digital reports, site photography updates, and tracking timelines.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-6 relative rounded-2xl overflow-hidden aspect-square md:aspect-[4/3] shadow-2xl reveal-right">
+                        <img alt="High-End Construction Site" class="w-full h-full object-cover hover:scale-102 transition-transform duration-1000 origin-center" src="assets/masonry.png" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white max-w-xs">
+                            <span class="font-inter text-[10px] font-bold tracking-[0.1em] text-heritage-gold uppercase">PORTFOLIO SHOT</span>
+                            <h4 class="font-playfair text-[18px] font-semibold mt-1">Custom Plaster Restoration &amp; Structural Leveling</h4>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Bento Grid Services Section -->
+        <section id="services" class="py-24 md:py-32 bg-[var(--surface-color)] border-t border-b border-[var(--border-color)]">
+            <div class="px-6 md:px-16 max-w-[1440px] mx-auto">
+                
+                <div class="text-center max-w-2xl mx-auto mb-20 reveal-on-scroll">
+                    <span class="font-inter text-[11px] md:text-[12px] font-bold tracking-[0.2em] text-heritage-gold uppercase block mb-4">OUR EXPERTISE</span>
+                    <h2 class="font-playfair text-[32px] md:text-[48px] font-semibold text-[var(--text-primary)]">Specialized Luxury Services</h2>
+                    <p class="font-inter text-[15px] text-[var(--text-secondary)] mt-4">Click on any card to view regulatory compliances, workflow processes, and detailed past deliverables.</p>
+                </div>
+                
+                <!-- Bento Grid Container -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    
+                    <!-- Bento Service 1 -->
+                    <div class="lg:col-span-8 group relative aspect-[16/10] md:aspect-auto lg:h-[450px] overflow-hidden rounded-2xl card-hover-effect tilt-card cursor-pointer service-card-trigger" data-service="gut">
+                        <img alt="Gut Renovations" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-104 origin-center" src="assets/brownstone.png"/>
+                        <div class="absolute inset-0 scrim-bottom flex flex-col justify-end p-8 md:p-12 text-white">
+                            <span class="font-inter text-[10px] font-bold tracking-[0.15em] text-heritage-gold uppercase mb-2">FULL RECONSTRUCTIONS</span>
+                            <h3 class="font-playfair text-[26px] md:text-[32px] font-bold mb-3">Residential Gut Renovations</h3>
+                            <p class="font-inter text-[14px] text-white/80 max-w-md opacity-0 group-hover:opacity-100 h-0 group-hover:h-auto overflow-hidden transition-all duration-500">Transforming historical townhouses and premier cooperative suites into immaculate architectural spaces.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Bento Service 2 -->
+                    <div class="lg:col-span-4 bg-charcoal-slate p-8 md:p-12 rounded-2xl card-hover-effect flex flex-col justify-between text-white tilt-card cursor-pointer service-card-trigger" data-service="brownstone">
+                        <div class="space-y-6">
+                            <span class="material-symbols-outlined text-heritage-gold text-[44px]">architecture</span>
+                            <h3 class="font-playfair text-[24px] md:text-[28px] font-semibold">Historic Restoration</h3>
+                            <p class="font-inter text-[14px] text-white/70 leading-relaxed">Preserving landmark structural heritage while integrating modern infrastructural climate systems.</p>
+                        </div>
+                        <ul class="space-y-3 mt-8 border-t border-white/10 pt-6">
+                            <li class="flex items-center gap-3 font-inter text-[11px] font-bold tracking-[0.1em] text-heritage-gold uppercase"><span class="material-symbols-outlined text-[16px]">check_circle</span> LPC Commissioning</li>
+                            <li class="flex items-center gap-3 font-inter text-[11px] font-bold tracking-[0.1em] text-heritage-gold uppercase"><span class="material-symbols-outlined text-[16px]">check_circle</span> Masonry Tooling</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Bento Service 3 -->
+                    <div class="lg:col-span-4 bg-[var(--surface-card)] p-8 md:p-12 rounded-2xl card-hover-effect flex flex-col justify-between border border-[var(--border-color)] group hover:bg-heritage-gold hover:text-ink-black transition-colors duration-500 tilt-card cursor-pointer service-card-trigger" data-service="millwork">
+                        <div class="space-y-6">
+                            <span class="material-symbols-outlined text-charcoal-slate dark:text-warm-white group-hover:text-ink-black text-[44px] transition-colors">handyman</span>
+                            <h3 class="font-playfair text-[24px] md:text-[28px] font-semibold text-[var(--text-primary)] group-hover:text-ink-black">Bespoke Millwork</h3>
+                            <p class="font-inter text-[14px] text-[var(--text-secondary)] group-hover:text-ink-black/80 leading-relaxed">Custom-crafted storage cabinets and detailed structural timber panels manufactured locally.</p>
+                        </div>
+                        <div class="mt-8 font-inter text-[11px] font-bold tracking-[0.1em] text-heritage-gold group-hover:text-ink-black uppercase border-t border-[var(--border-color)] group-hover:border-ink-black/10 pt-6 flex items-center gap-2">
+                            <span>Browse Works</span>
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Bento Service 4 -->
+                    <div class="lg:col-span-8 group relative aspect-[16/10] md:aspect-auto lg:h-[450px] overflow-hidden rounded-2xl card-hover-effect tilt-card cursor-pointer service-card-trigger" data-service="commercial">
+                        <img alt="Commercial Fit-outs" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-104 origin-center" src="assets/commercial.png"/>
+                        <div class="absolute inset-0 scrim-bottom flex flex-col justify-end p-8 md:p-12 text-white">
+                            <span class="font-inter text-[10px] font-bold tracking-[0.15em] text-heritage-gold uppercase mb-2">COMMERCIAL FLAGSHIPS</span>
+                            <h3 class="font-playfair text-[26px] md:text-[32px] font-bold mb-3">Corporate &amp; Retail Fit-Outs</h3>
+                            <p class="font-inter text-[14px] text-white/80 max-w-md opacity-0 group-hover:opacity-100 h-0 group-hover:h-auto overflow-hidden transition-all duration-500">Pristine, minimalist retail boutique and flagship workplace environments showcasing maximum structural depth.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Process Section with Progress Line -->
+        <section id="process" class="py-24 md:py-32 bg-[var(--bg-color)]">
+            <div class="px-6 md:px-16 max-w-[1440px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                    
+                    <div class="lg:col-span-4 lg:sticky lg:top-32 space-y-6">
+                        <span class="font-inter text-[11px] md:text-[12px] font-bold tracking-[0.2em] text-heritage-gold uppercase block">THE METHOD</span>
+                        <h2 class="font-playfair text-[32px] md:text-[44px] font-semibold text-[var(--text-primary)] leading-[1.15]">
+                            A Precision Framework for Complex Builds.
+                        </h2>
+                        <p class="font-inter text-[15px] text-[var(--text-secondary)] leading-relaxed">
+                            We minimize construction anomalies through a highly structured 4-step workflow that anchors budget alignments and regulatory clearances before hammers hit surfaces.
+                        </p>
+                        
+                        <div class="pt-6 hidden lg:block">
+                            <a href="#contact" class="inline-flex items-center gap-3 font-inter text-[12px] font-bold tracking-[0.1em] text-heritage-gold dark:text-gold-leaf hover:translate-x-2 transition-transform duration-300 uppercase">
+                                Book consultation
+                                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Vertical Timeline Container -->
+                    <div class="lg:col-span-8 timeline-container pl-16 md:pl-24 space-y-16">
+                        
+                        <!-- Timeline Progress Line -->
+                        <div class="timeline-line-bg"></div>
+                        <div id="timeline-progress" class="timeline-line-progress"></div>
+                        
+                        <!-- Step 1 -->
+                        <div class="timeline-step flex gap-8 items-start active">
+                            <div class="absolute left-[24px] md:left-[24px] z-10 translate-x-1.5">
+                                <div class="timeline-node">01</div>
+                            </div>
+                            <div class="bg-[var(--surface-card)] p-8 rounded-2xl border border-[var(--border-color)] shadow-sm max-w-xl transition-all duration-500">
+                                <h3 class="font-playfair text-[20px] md:text-[22px] font-bold text-[var(--text-primary)] mb-3">Site Consultation &amp; Feasibility</h3>
+                                <p class="font-inter text-[14px] text-[var(--text-secondary)] leading-relaxed">
+                                    We conduct on-site physical walk-throughs to inspect joists, framing structures, structural pathways, plumbing conditions, and analyze co-op alteration logs.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2 -->
+                        <div class="timeline-step flex gap-8 items-start">
+                            <div class="absolute left-[24px] md:left-[24px] z-10 translate-x-1.5">
+                                <div class="timeline-node">02</div>
+                            </div>
+                            <div class="bg-[var(--surface-card)] p-8 rounded-2xl border border-[var(--border-color)] shadow-sm max-w-xl transition-all duration-500">
+                                <h3 class="font-playfair text-[20px] md:text-[22px] font-bold text-[var(--text-primary)] mb-3">Pre-Construction &amp; Board Filings</h3>
+                                <p class="font-inter text-[14px] text-[var(--text-secondary)] leading-relaxed">
+                                    Compiling design documents for landmarks commissions (LPC), coordinating engineering approvals, drawing lines of utility layouts, and submitting board approval binders.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3 -->
+                        <div class="timeline-step flex gap-8 items-start">
+                            <div class="absolute left-[24px] md:left-[24px] z-10 translate-x-1.5">
+                                <div class="timeline-node">03</div>
+                            </div>
+                            <div class="bg-[var(--surface-card)] p-8 rounded-2xl border border-[var(--border-color)] shadow-sm max-w-xl transition-all duration-500">
+                                <h3 class="font-playfair text-[20px] md:text-[22px] font-bold text-[var(--text-primary)] mb-3">Architectural Construction</h3>
+                                <p class="font-inter text-[14px] text-[var(--text-secondary)] leading-relaxed">
+                                    Direct project management including coordinate logistics, MEP installations, custom millwork fittings, marble setting, and strict dust protections.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4 -->
+                        <div class="timeline-step flex gap-8 items-start">
+                            <div class="absolute left-[24px] md:left-[24px] z-10 translate-x-1.5">
+                                <div class="timeline-node">04</div>
+                            </div>
+                            <div class="bg-[var(--surface-card)] p-8 rounded-2xl border border-[var(--border-color)] shadow-sm max-w-xl transition-all duration-500">
+                                <h3 class="font-playfair text-[20px] md:text-[22px] font-bold text-[var(--text-primary)] mb-3">White-Glove Handover</h3>
+                                <p class="font-inter text-[14px] text-[var(--text-secondary)] leading-relaxed">
+                                    Reviewing rigorous checklist items, performing white-glove site cleaning, DOB sign-off closures, and transferring keys to client legacy.
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Filterable Luxury Portfolio Grid Section -->
+        <section id="portfolio" class="py-24 md:py-32 bg-[var(--surface-color)] border-t border-b border-[var(--border-color)]">
+            <div class="px-6 md:px-16 max-w-[1440px] mx-auto">
+                
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal-on-scroll">
+                    <div class="max-w-xl">
+                        <span class="font-inter text-[11px] md:text-[12px] font-bold tracking-[0.2em] text-heritage-gold uppercase block mb-4">OUR WORK</span>
+                        <h2 class="font-playfair text-[32px] md:text-[48px] font-semibold text-[var(--text-primary)]">The Metropolitan Portfolio</h2>
+                    </div>
+                    
+                    <!-- Filters List -->
+                    <div class="flex flex-wrap gap-3">
+                        <button class="portfolio-filter-btn px-6 py-2.5 rounded-full font-inter text-[12px] font-semibold tracking-wider transition-all duration-300 bg-charcoal-slate dark:bg-accent text-warm-white dark:text-ink-black" data-filter="all">ALL</button>
+                        <button class="portfolio-filter-btn px-6 py-2.5 rounded-full font-inter text-[12px] font-semibold tracking-wider transition-all duration-300 bg-surface-container text-on-surface-variant" data-filter="townhouse">TOWNHOUSE</button>
+                        <button class="portfolio-filter-btn px-6 py-2.5 rounded-full font-inter text-[12px] font-semibold tracking-wider transition-all duration-300 bg-surface-container text-on-surface-variant" data-filter="commercial">COMMERCIAL</button>
+                        <button class="portfolio-filter-btn px-6 py-2.5 rounded-full font-inter text-[12px] font-semibold tracking-wider transition-all duration-300 bg-surface-container text-on-surface-variant" data-filter="masonry">MASONRY</button>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Grid Items -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Project item 1 -->
+                    <div class="portfolio-item group relative h-[450px] rounded-2xl overflow-hidden shadow-lg transition-all duration-500 hover:translate-y-[-6px]" data-categories="townhouse">
+                        <img alt="Luxury Brooklyn Townhouse" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 origin-center" src="assets/brownstone.png" />
+                        <div class="absolute inset-0 scrim-bottom flex flex-col justify-end p-8 text-white">
+                            <span class="font-inter text-[10px] font-bold tracking-[0.15em] text-heritage-gold uppercase">PARK SLOPE, BROOKLYN</span>
+                            <h3 class="font-playfair text-[22px] font-bold mt-1">Metropolitan Townhouse Gut</h3>
+                            <p class="font-inter text-[13px] text-white/70 mt-2 h-0 group-hover:h-auto overflow-hidden transition-all duration-500">Meticulous spatial reconfiguration and structural parlor level wood restorations.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project item 2 -->
+                    <div class="portfolio-item group relative h-[450px] rounded-2xl overflow-hidden shadow-lg transition-all duration-500 hover:translate-y-[-6px]" data-categories="commercial">
+                        <img alt="Corporate Boutique Interior" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 origin-center" src="assets/commercial.png" />
+                        <div class="absolute inset-0 scrim-bottom flex flex-col justify-end p-8 text-white">
+                            <span class="font-inter text-[10px] font-bold tracking-[0.15em] text-heritage-gold uppercase">SOHO, MANHATTAN</span>
+                            <h3 class="font-playfair text-[22px] font-bold mt-1">Minimalist SoHo Boutique</h3>
+                            <p class="font-inter text-[13px] text-white/70 mt-2 h-0 group-hover:h-auto overflow-hidden transition-all duration-500">Architectural retail space fitouts including structural glass panel setups.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project item 3 -->
+                    <div class="portfolio-item group relative h-[450px] rounded-2xl overflow-hidden shadow-lg transition-all duration-500 hover:translate-y-[-6px]" data-categories="masonry">
+                        <img alt="Artisanal Masonry & Woodwork" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 origin-center" src="assets/masonry.png" />
+                        <div class="absolute inset-0 scrim-bottom flex flex-col justify-end p-8 text-white">
+                            <span class="font-inter text-[10px] font-bold tracking-[0.15em] text-heritage-gold uppercase">BROOKLYN HEIGHTS</span>
+                            <h3 class="font-playfair text-[22px] font-bold mt-1">Historic Stone Parlor</h3>
+                            <p class="font-inter text-[13px] text-white/70 mt-2 h-0 group-hover:h-auto overflow-hidden transition-all duration-500">Detailed custom brick restoring and stone fireplace structural integrations.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-24 bg-[var(--bg-color)]">
+            <div class="px-6 md:px-16 max-w-[1440px] mx-auto text-center">
+                <span class="font-inter text-[11px] md:text-[12px] font-bold tracking-[0.2em] text-heritage-gold uppercase block mb-4">REVIEWS</span>
+                <h2 class="font-playfair text-[32px] md:text-[44px] font-semibold text-[var(--text-primary)] mb-16">Endorsed by Discerning Clients</h2>
+                
+                <div class="max-w-3xl mx-auto relative px-8">
+                    <!-- Slide 1 -->
+                    <div class="testimonial-slide active">
+                        <p class="font-playfair text-[20px] md:text-[26px] italic text-[var(--text-primary)] leading-relaxed">
+                            "Double V Contracting is easily the most meticulous contractor we have ever commissioned. Navigating co-op requirements in our Manhattan suite was completely transparent, and their millwork precision is breathtaking."
+                        </p>
+                        <div class="mt-8">
+                            <h4 class="font-inter text-[14px] font-bold text-[var(--text-primary)] uppercase tracking-wider">Charles &amp; Kathryn V.</h4>
+                            <p class="font-inter text-[11px] text-heritage-gold uppercase tracking-widest mt-1">Fifth Avenue Cooperative</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="testimonial-slide">
+                        <p class="font-playfair text-[20px] md:text-[26px] italic text-[var(--text-primary)] leading-relaxed">
+                            "Their understanding of historic landmark preservation (LPC) was absolutely critical for our Park Slope brownstone gut. They reproduced moldings with museum accuracy while successfully installing modern utilities."
+                        </p>
+                        <div class="mt-8">
+                            <h4 class="font-inter text-[14px] font-bold text-[var(--text-primary)] uppercase tracking-wider">Elena R.</h4>
+                            <p class="font-inter text-[11px] text-heritage-gold uppercase tracking-widest mt-1">Historic Brooklyn Heights Brownstone Owner</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Carousel Controls -->
+                    <div class="flex justify-center gap-6 mt-12">
+                        <button id="test-prev-btn" class="w-12 h-12 rounded-full border border-[var(--border-color)] flex items-center justify-center text-[var(--text-primary)] hover:bg-heritage-gold hover:text-ink-black hover:border-heritage-gold transition-all duration-300" aria-label="Previous Review">
+                            <span class="material-symbols-outlined text-[20px]">chevron_left</span>
+                        </button>
+                        <button id="test-next-btn" class="w-12 h-12 rounded-full border border-[var(--border-color)] flex items-center justify-center text-[var(--text-primary)] hover:bg-heritage-gold hover:text-ink-black hover:border-heritage-gold transition-all duration-300" aria-label="Next Review">
+                            <span class="material-symbols-outlined text-[20px]">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Estimator & Booking Section -->
+        <section id="contact" class="py-24 bg-charcoal-slate text-warm-white relative overflow-hidden">
+            <!-- Decorative SVG layout background -->
+            <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
+                <svg class="w-full h-full stroke-heritage-gold fill-none" viewBox="0 0 100 100">
+                    <path d="M0 0 L100 100 M100 0 L0 100" stroke-width="0.5"></path>
+                    <circle cx="50" cy="50" r="45"></circle>
+                </svg>
+            </div>
+            
+            <div class="px-6 md:px-16 max-w-[1440px] mx-auto relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    
+                    <!-- Cost Estimator Column -->
+                    <div class="lg:col-span-6 space-y-8">
+                        <div class="space-y-4">
+                            <span class="font-inter text-[11px] font-bold tracking-[0.2em] text-heritage-gold uppercase block">TRANSPARENT METRICS</span>
+                            <h2 class="font-playfair text-[32px] md:text-[48px] font-semibold">Luxury Cost Estimator</h2>
+                            <p class="font-inter text-[14px] text-white/70 max-w-md">Align your budget instantly. Custom formulas factor in premium finishes, NYC building sizes, and landmark logistics.</p>
+                        </div>
+                        
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 space-y-6">
+                            
+                            <!-- Slider 1 -->
+                            <div class="space-y-2">
+                                <label class="font-inter text-[11px] font-bold tracking-[0.15em] text-white/60 uppercase">Project Type</label>
+                                <select id="est-type" class="w-full bg-charcoal-slate border-b border-white/20 focus:border-heritage-gold transition-colors py-2 text-white outline-none">
+                                    <option value="gut">Residential Gut Renovation</option>
+                                    <option value="brownstone">Historic Brownstone Restoration</option>
+                                    <option value="commercial">Commercial Fit-Out</option>
+                                    <option value="millwork">Bespoke Millwork &amp; Masonry</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Slider 2 -->
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-baseline">
+                                    <label class="font-inter text-[11px] font-bold tracking-[0.15em] text-white/60 uppercase">Scope Size (sq ft)</label>
+                                    <span class="font-playfair text-[18px] text-heritage-gold font-bold"><span id="est-area-value">1,500</span> sq ft</span>
+                                </div>
+                                <input id="est-area" type="range" min="500" max="10000" step="100" value="1500" class="calculator-slider" />
+                            </div>
+                            
+                            <!-- Slider 3 -->
+                            <div class="space-y-2">
+                                <label class="font-inter text-[11px] font-bold tracking-[0.15em] text-white/60 uppercase">Craft Finish Level</label>
+                                <select id="est-finish" class="w-full bg-charcoal-slate border-b border-white/20 focus:border-heritage-gold transition-colors py-2 text-white outline-none">
+                                    <option value="premium">Premium (Impeccable Quality &amp; DOB filings)</option>
+                                    <option value="ultra">Ultra-Luxury (Italian Marble, Hidden panels, Automation)</option>
+                                    <option value="legacy">Legacy Quality (Museum-Grade LPC, Class-A Woodworks)</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Result Box -->
+                            <div class="border-t border-white/10 pt-6 mt-8">
+                                <span class="font-inter text-[10px] font-bold tracking-[0.15em] text-white/50 uppercase">Estimated Budget Range</span>
+                                <div class="flex items-baseline gap-2 mt-2">
+                                    <span id="est-result-min" class="font-playfair text-[32px] md:text-[40px] font-bold text-heritage-gold">$350,000</span>
+                                    <span class="text-white/40 text-[20px] font-light">—</span>
+                                    <span id="est-result-max" class="font-playfair text-[32px] md:text-[40px] font-bold text-heritage-gold">$420,000</span>
+                                </div>
+                                <p class="font-inter text-[11px] text-white/50 mt-2 italic">*Range represents regional NYC metrics. Exact bids compiled upon physical site check.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Consultation Booking Form Column -->
+                    <div class="lg:col-span-6">
+                        <form id="consultation-form" class="bg-white/5 border border-white/10 p-8 md:p-12 rounded-[2rem] shadow-2xl space-y-6">
+                            <span class="font-inter text-[11px] font-bold tracking-[0.2em] text-heritage-gold uppercase block">BOOK CONSULTATION</span>
+                            <h3 class="font-playfair text-[28px] md:text-[34px] font-semibold text-white">Arrange a Walkthrough</h3>
+                            
+                            <div class="space-y-1">
+                                <label class="font-inter text-[11px] font-bold tracking-[0.1em] text-white/50 uppercase">Full Name</label>
+                                <input required class="w-full bg-transparent border-b border-white/20 focus:border-heritage-gold transition-colors py-3 text-white outline-none" type="text"/>
+                            </div>
+                            
+                            <div class="space-y-1">
+                                <label class="font-inter text-[11px] font-bold tracking-[0.1em] text-white/50 uppercase">Email Address</label>
+                                <input required class="w-full bg-transparent border-b border-white/20 focus:border-heritage-gold transition-colors py-3 text-white outline-none" type="email"/>
+                            </div>
+                            
+                            <div class="space-y-1">
+                                <label class="font-inter text-[11px] font-bold tracking-[0.1em] text-white/50 uppercase">Project Address (NYC)</label>
+                                <input required class="w-full bg-transparent border-b border-white/20 focus:border-heritage-gold transition-colors py-3 text-white outline-none placeholder:text-white/20" placeholder="e.g. Park Slope, Manhattan Upper East Side" type="text"/>
+                            </div>
+                            
+                            <button type="submit" class="w-full py-4.5 bg-heritage-gold text-ink-black font-inter text-[13px] font-bold tracking-wider rounded-full hover:bg-white transition-colors duration-300 uppercase shadow-lg shadow-heritage-gold/20 flex items-center justify-center gap-2 mt-8">
+                                Submit Consultation Request
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                            </button>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-24 bg-[var(--surface-color)]">
+            <div class="px-6 md:px-16 max-w-[1440px] mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-20 reveal-on-scroll">
+                    <span class="font-inter text-[11px] md:text-[12px] font-bold tracking-[0.2em] text-heritage-gold uppercase block mb-4">FAQ</span>
+                    <h2 class="font-playfair text-[32px] md:text-[44px] font-semibold text-[var(--text-primary)]">Frequently Answered Queries</h2>
+                </div>
+                
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <!-- FAQ 1 -->
+                    <div class="accordion-item bg-[var(--surface-card)] border border-[var(--border-color)] rounded-xl transition-all duration-300 shadow-sm">
+                        <button class="accordion-trigger w-full px-6 py-5 md:py-6 flex justify-between items-center text-left text-[var(--text-primary)]">
+                            <span class="font-playfair text-[18px] md:text-[20px] font-semibold">How do you manage DOB approvals and Co-op board agreements?</span>
+                            <span class="material-symbols-outlined accordion-chevron text-heritage-gold">keyboard_arrow_down</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="px-6 pb-6 text-body-md text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border-color)] pt-4">
+                                We manage all DOB filings, Landmark commissions (LPC) approvals, and asbestos reports. Our dedicated team compiles the complete board binder requirements including insurance certificates (ACORD) and physical sound testing models to ensure rapid board clearance.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 2 -->
+                    <div class="accordion-item bg-[var(--surface-card)] border border-[var(--border-color)] rounded-xl transition-all duration-300 shadow-sm">
+                        <button class="accordion-trigger w-full px-6 py-5 md:py-6 flex justify-between items-center text-left text-[var(--text-primary)]">
+                            <span class="font-playfair text-[18px] md:text-[20px] font-semibold">How do you control construction dust and property safety?</span>
+                            <span class="material-symbols-outlined accordion-chevron text-heritage-gold">keyboard_arrow_down</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="px-6 pb-6 text-body-md text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border-color)] pt-4">
+                                Our teams execute strict HEPA air filtration setups, install thick canvas floor boards across all hallway entries, and implement dust-containment zipper doorways on site. We preserve elevator surrounds and ensure building safety policies are rigorously respected.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 3 -->
+                    <div class="accordion-item bg-[var(--surface-card)] border border-[var(--border-color)] rounded-xl transition-all duration-300 shadow-sm">
+                        <button class="accordion-trigger w-full px-6 py-5 md:py-6 flex justify-between items-center text-left text-[var(--text-primary)]">
+                            <span class="font-playfair text-[18px] md:text-[20px] font-semibold">Can we tour your active or completed NYC project sites?</span>
+                            <span class="material-symbols-outlined accordion-chevron text-heritage-gold">keyboard_arrow_down</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="px-6 pb-6 text-body-md text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border-color)] pt-4">
+                                Absolutely. We coordinate private, scheduled walkthrough tours of completed gut-renovated apartments, boutique retail units, or brownstone masonry restorations so you can inspect our physical joints and marble alignments first hand.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Area -->
+    <footer class="bg-charcoal-slate border-t border-white/5 text-warm-white py-20">
+        <div class="px-6 md:px-16 max-w-[1440px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 md:gap-16">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="font-playfair text-[24px] font-bold tracking-tight text-heritage-gold flex items-center gap-3">
+                        <span class="w-8 h-8 bg-warm-white text-charcoal-slate rounded flex items-center justify-center font-bold font-playfair">V</span>
+                        Double V Contracting
+                    </span>
+                    <p class="font-inter text-[14px] text-white/60 leading-relaxed max-w-sm">
+                        Crafting structural precision and impeccable surface luxury inside Manhattan and Brooklyn since 2004. Licensed NYC GC, landmarks restoration expert.
+                    </p>
+                </div>
+                
+                <div class="lg:col-span-2 space-y-4">
+                    <h4 class="font-inter text-[11px] font-bold tracking-[0.15em] text-heritage-gold uppercase">NAVIGATION</h4>
+                    <div class="flex flex-col gap-2.5 font-inter text-[13px] text-white/50">
+                        <a class="hover:text-white transition-colors" href="#services">Services</a>
+                        <a class="hover:text-white transition-colors" href="#process">Process</a>
+                        <a class="hover:text-white transition-colors" href="#portfolio">Portfolio</a>
+                        <a class="hover:text-white transition-colors" href="#faq">FAQ</a>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-2 space-y-4">
+                    <h4 class="font-inter text-[11px] font-bold tracking-[0.15em] text-heritage-gold uppercase">LICENSES</h4>
+                    <div class="flex flex-col gap-2.5 font-inter text-[13px] text-white/50">
+                        <p>NYC GC LIC: #610488</p>
+                        <p>DCWP LIC: #204128</p>
+                        <p>EPA Lead Safe GC</p>
+                        <p>Fully Insured ($10M)</p>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-3 space-y-4">
+                    <h4 class="font-inter text-[11px] font-bold tracking-[0.15em] text-heritage-gold uppercase">CONCIERGE</h4>
+                    <div class="flex flex-col gap-2.5 font-inter text-[13px] text-white/50">
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-heritage-gold">call</span> (212) 555-0198</p>
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-heritage-gold">mail</span> hello@doublev.com</p>
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px] text-heritage-gold">pin_drop</span> 244 5th Avenue, NYC</p>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="mt-16 pt-8 border-t border-white/5 text-center flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="font-inter text-[11px] text-white/40">© 2026 Double V Contracting. NYC &amp; Brooklyn's Premier Luxury General Contractor.</p>
+                <div class="flex gap-6 font-inter text-[11px] text-white/40">
+                    <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+                    <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         Service Detail Slide-Out Drawer
+         ========================================== -->
+    <div id="drawer-overlay" class="drawer-overlay"></div>
+    <div id="service-drawer" class="detail-drawer shadow-2xl flex flex-col justify-between overflow-y-auto">
+        <div>
+            <!-- Drawer Header -->
+            <div class="p-6 md:p-8 border-b border-[var(--border-color)] flex justify-between items-center bg-[var(--surface-color)]">
+                <span class="font-inter text-[10px] font-bold tracking-[0.15em] text-heritage-gold uppercase">EXPERT SCOPE DETAILS</span>
+                <button id="drawer-close-btn" class="w-10 h-10 rounded-full border border-[var(--border-color)] flex items-center justify-center text-[var(--text-primary)] hover:bg-heritage-gold hover:text-ink-black transition-colors duration-300" aria-label="Close Drawer">
+                    <span class="material-symbols-outlined text-[18px]">close</span>
+                </button>
+            </div>
+            
+            <!-- Drawer Content Body -->
+            <div class="p-6 md:p-8 space-y-8">
+                <!-- Image Header -->
+                <div class="w-full aspect-[16/9] rounded-xl overflow-hidden shadow-md">
+                    <img id="drawer-img" alt="Service Detail Background" class="w-full h-full object-cover" src="assets/brownstone.png" />
+                </div>
+                
+                <div class="space-y-3">
+                    <h3 id="drawer-title" class="font-playfair text-[26px] md:text-[30px] font-bold text-[var(--text-primary)]">Residential Gut Renovations</h3>
+                    <p id="drawer-desc" class="font-inter text-[14px] text-[var(--text-secondary)] leading-relaxed">
+                        A full layout redesign for historic luxury buildings. We coordinate loading requirements and MEP installations with absolute geometric precision.
+                    </p>
+                </div>
+                
+                <!-- Deliverables Checklist -->
+                <div class="space-y-4 pt-6 border-t border-[var(--border-color)]">
+                    <h4 class="font-inter text-[11px] font-bold tracking-[0.15em] text-heritage-gold uppercase">Standard Bidding Deliverables</h4>
+                    <ul id="drawer-deliverables" class="space-y-3">
+                        <!-- Filled dynamically by JS scripts -->
+                    </ul>
+                </div>
+                
+                <!-- Compliance Scope -->
+                <div class="space-y-3 pt-6 border-t border-[var(--border-color)]">
+                    <h4 class="font-inter text-[11px] font-bold tracking-[0.15em] text-heritage-gold uppercase">DOB &amp; Board Compliance Scope</h4>
+                    <p id="drawer-compliance" class="font-inter text-[13px] text-[var(--text-secondary)] leading-relaxed italic bg-heritage-gold/5 p-4 rounded-lg border border-heritage-gold/15">
+                        DOB Alteration-Type 1 filings, landmark approvals binders, dust mitigation containment partitions.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Drawer CTA Footer -->
+        <div class="p-6 md:p-8 bg-[var(--surface-color)] border-t border-[var(--border-color)]">
+            <a href="#contact" onclick="closeDrawer()" class="w-full py-4 bg-heritage-gold text-ink-black flex items-center justify-center gap-2 font-inter text-[13px] font-bold tracking-wider rounded-full hover:shadow-lg transition-shadow duration-300 uppercase">
+                Schedule Feasibility Inspection
+                <span class="material-symbols-outlined text-[18px]">calendar_today</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         Success Submission Modal
+         ========================================== -->
+    <div id="success-modal" class="hidden fixed inset-0 z-[110] bg-ink-black/60 backdrop-blur-sm items-center justify-center p-6">
+        <div class="max-w-md w-full bg-[var(--surface-card)] border border-[var(--border-color)] rounded-3xl p-8 text-center shadow-2xl relative animate-fade-in-up">
+            
+            <div class="w-20 h-20 bg-heritage-gold/10 text-heritage-gold dark:text-gold-leaf rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="material-symbols-outlined text-[44px]">task_alt</span>
+            </div>
+            
+            <h3 class="font-playfair text-[26px] font-bold text-[var(--text-primary)] mb-3">Consultation Registered</h3>
+            <p class="font-inter text-[14px] text-[var(--text-secondary)] leading-relaxed mb-8">
+                Our principal concierge team is conducting historical DOB and building log reviews for your address and will contact you within 24 hours to coordinate our on-site inspection.
+            </p>
+            
+            <button id="modal-close-btn" class="w-full py-4 bg-charcoal-slate text-warm-white font-inter text-[13px] font-bold tracking-wider rounded-full hover:bg-heritage-gold hover:text-ink-black transition-colors duration-300 uppercase shadow-lg">
+                Back to Presentation
+            </button>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
