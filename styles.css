@@ -363,15 +363,7 @@ body {
 .logo-premium {
     height: 3.5rem; /* h-14 equivalent */
     width: auto;
-    object-contain: fit;
+    object-fit: contain;
     transition: var(--transition-premium);
-    /* By default (light mode), blend or keep clean */
-    mix-blend-mode: multiply;
-}
-
-/* On dark theme, invert the logo: black text becomes white, blue parts shift to gold! */
-[data-theme="dark"] .logo-premium {
-    filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.1);
-    mix-blend-mode: normal;
 }
 

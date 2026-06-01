@@ -28,15 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     function setTheme(theme) {
+        const headerLogo = document.getElementById('header-logo');
         if (theme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
             localStorage.setItem('double-v-theme', 'dark');
             themeIcon.textContent = 'light_mode'; // icon to switch back to light
-            // Update any dynamic colors or classes here
+            if (headerLogo) headerLogo.src = 'assets/logo_dark.png';
         } else {
             document.documentElement.removeAttribute('data-theme');
             localStorage.setItem('double-v-theme', 'light');
             themeIcon.textContent = 'dark_mode'; // icon to switch back to dark
+            if (headerLogo) headerLogo.src = 'assets/logo_light.png';
         }
         
         // Trigger a custom event to notify other scripts of theme changes if needed
