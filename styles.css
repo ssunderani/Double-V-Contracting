@@ -361,7 +361,7 @@ body {
 
 /* --- Premium Logo Styling & Theme Transitions --- */
 .logo-premium {
-    height: 3.25rem; /* 52px on mobile for clean visibility */
+    height: 2.75rem; /* 44px on mobile for compact elegance */
     width: auto;
     object-fit: contain;
     transition: var(--transition-premium);
@@ -369,12 +369,12 @@ body {
 
 @media (min-width: 768px) {
     .logo-premium {
-        height: 4rem; /* 64px on desktop for high impact and premium feel */
+        height: 3.5rem; /* 56px on desktop for high-end legibility with generous breathing room */
     }
 }
 
 /* Dynamic height transition when navigation bar is compressed on scroll */
 #main-nav.h-16 .logo-premium {
-    height: 2.75rem; /* 44px when header is compressed to 64px, maintaining proportion */
+    height: 2.25rem; /* 36px when header is compressed to 64px, maintaining perfect padding */
 }
 
