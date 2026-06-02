@@ -168,13 +168,13 @@ body {
     border-color: var(--accent);
     color: var(--on-accent);
     background-color: var(--accent);
-    box-shadow: 0 0 20px rgba(184, 155, 114, 0.4);
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.4);
 }
 
 [data-theme="dark"] .timeline-step.active .timeline-node {
     background: var(--accent-gradient, var(--accent));
     border-color: transparent;
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.5);
 }
 
 /* --- Dynamic Estimate Cost Calculator Styles --- */
