@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.setAttribute('data-theme', 'dark');
             localStorage.setItem('double-v-theme', 'dark');
             themeIcon.textContent = 'light_mode'; // icon to switch back to light
-            if (headerLogo) headerLogo.src = 'assets/logo_dark.png?v=4';
+            if (headerLogo) headerLogo.src = 'assets/logo_dark.png?v=5';
         } else {
             document.documentElement.removeAttribute('data-theme');
             localStorage.setItem('double-v-theme', 'light');
             themeIcon.textContent = 'dark_mode'; // icon to switch back to dark
-            if (headerLogo) headerLogo.src = 'assets/logo_light.png?v=4';
+            if (headerLogo) headerLogo.src = 'assets/logo_light.png?v=5';
         }
         
         // Trigger a custom event to notify other scripts of theme changes if needed
