@@ -2,21 +2,21 @@
 
 /* --- Custom Variables & Theme Tokens --- */
 :root {
-    /* Metropolitan Masterpiece (Light Theme) Tokens */
-    --bg-color: #f9f9f7;
-    --surface-color: #f9f9f7;
+    /* Reimagined Light Theme with Montserrat and Navy/Blue Palette */
+    --bg-color: #f4f6f9; /* Tertiary light grey-blue */
+    --surface-color: #f4f6f9;
     --surface-card: #ffffff;
-    --surface-card-hover: #f1f1ee;
-    --text-primary: #1a1c1b;
-    --text-secondary: #5d5e61;
-    --accent: #B89B72; /* Heritage Gold */
-    --accent-hover: #9e825b;
-    --on-accent: #121212;
-    --border-color: rgba(44, 46, 48, 0.1);
-    --border-glow: rgba(184, 155, 114, 0.3);
-    --navbar-bg: rgba(249, 249, 247, 0.85);
-    --timeline-line: rgba(44, 46, 48, 0.15);
-    --shadow-premium: 0px 20px 40px rgba(0, 0, 0, 0.03);
+    --surface-card-hover: #e5e9f0; /* Tertiary grey-blue hover */
+    --text-primary: #001a3d; /* Primary navy blue */
+    --text-secondary: #4a5568;
+    --accent: #007aff; /* Secondary bright blue */
+    --accent-hover: #0056b3;
+    --on-accent: #ffffff;
+    --border-color: rgba(0, 26, 61, 0.1);
+    --border-glow: rgba(0, 122, 255, 0.2);
+    --navbar-bg: rgba(244, 246, 249, 0.85);
+    --timeline-line: rgba(0, 26, 61, 0.15);
+    --shadow-premium: 0px 20px 40px rgba(0, 26, 61, 0.04);
     
     /* Global Transitions */
     --transition-premium: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -25,21 +25,21 @@
 
 /* Obsidian Elite (Dark Theme) Tokens */
 [data-theme="dark"] {
-    --bg-color: #0a0a0a;
-    --surface-color: #111111;
-    --surface-card: #141313;
-    --surface-card-hover: #1c1b1b;
-    --text-primary: #e5e2e1;
-    --text-secondary: #c4c7c7;
-    --accent: #E2B870; /* Gold Leaf */
-    --accent-hover: #ebc077;
-    --on-accent: #121212;
-    --border-color: rgba(255, 255, 255, 0.08);
-    --border-glow: rgba(99, 102, 241, 0.3);
-    --navbar-bg: rgba(10, 10, 10, 0.85);
-    --timeline-line: rgba(255, 255, 255, 0.1);
+    --bg-color: #030d1a; /* Very deep navy-black */
+    --surface-color: #051224;
+    --surface-card: #08172e;
+    --surface-card-hover: #0c2240;
+    --text-primary: #f4f6f9;
+    --text-secondary: #a0aec0;
+    --accent: #007aff; /* Secondary bright blue */
+    --accent-hover: #3395ff;
+    --on-accent: #ffffff;
+    --border-color: rgba(0, 122, 255, 0.15);
+    --border-glow: rgba(0, 122, 255, 0.35);
+    --navbar-bg: rgba(3, 13, 26, 0.85);
+    --timeline-line: rgba(0, 122, 255, 0.2);
     --shadow-premium: 0px 30px 60px rgba(0, 0, 0, 0.5);
-    --accent-gradient: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%); /* Electric Dusk */
+    --accent-gradient: linear-gradient(135deg, #007aff 0%, #001a3d 100%); /* Blue to Navy gradient */
 }
 
 /* --- Font Declarations & Base Overrides --- */
