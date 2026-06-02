@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.setAttribute('data-theme', 'dark');
             localStorage.setItem('double-v-theme', 'dark');
             themeIcon.textContent = 'light_mode'; // icon to switch back to light
-            if (headerLogo) headerLogo.src = 'assets/logo_dark.png?v=3';
+            if (headerLogo) headerLogo.src = 'assets/logo_dark.png?v=4';
         } else {
             document.documentElement.removeAttribute('data-theme');
             localStorage.setItem('double-v-theme', 'light');
             themeIcon.textContent = 'dark_mode'; // icon to switch back to dark
-            if (headerLogo) headerLogo.src = 'assets/logo_light.png?v=3';
+            if (headerLogo) headerLogo.src = 'assets/logo_light.png?v=4';
         }
         
         // Trigger a custom event to notify other scripts of theme changes if needed
@@ -457,18 +457,18 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             // Remove active style from all buttons
             filterBtns.forEach(b => {
-                b.classList.remove('bg-charcoal-slate', 'text-warm-white', 'bg-accent', 'text-ink-black');
-                b.classList.add('bg-surface-container', 'text-on-surface-variant');
+                b.classList.remove('bg-[#001a3d]', 'bg-[#007aff]', 'text-white');
+                b.classList.add('bg-white', 'dark:bg-[#08172e]', 'text-[#001a3d]', 'dark:text-[#f4f6f9]', 'border', 'border-black/5', 'dark:border-white/5');
             });
             
             // Add active style to current button based on theme
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             if (isDark) {
-                btn.classList.add('bg-accent', 'text-ink-black');
+                btn.classList.add('bg-[#007aff]', 'text-white');
             } else {
-                btn.classList.add('bg-charcoal-slate', 'text-warm-white');
+                btn.classList.add('bg-[#001a3d]', 'text-white');
             }
-            btn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+            btn.classList.remove('bg-white', 'dark:bg-[#08172e]', 'text-[#001a3d]', 'dark:text-[#f4f6f9]', 'border', 'border-black/5', 'dark:border-white/5');
             
             const filterValue = btn.getAttribute('data-filter');
             
